@@ -211,14 +211,10 @@ def create_table(df, table_name, engine):
 
 
 if __name__ == '__main__':
-    engine = conn()
+
     engine_dev = dev_conn()
 
-    df = get_data(engine)
-    # final_df = do_transform(df)
-    monthly_df = calculate_monthly_forecast(df)
-    # weekly_df = calculate_weekly_forecast(df)
-    
-    print(monthly_df)
-    #print(weekly_df)
+    query = 'select count(1) from public.gen_v_monthly_forecast'
+    df = pd.read_sql(query, engine_dev)
+    print(df)
 
