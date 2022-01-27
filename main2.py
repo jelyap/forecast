@@ -10,7 +10,7 @@ st.title('Forecast App')
 
 @st.cache
 
-load_dotenv()
+load_dotenv(find_dotenv)
 
 
 def conn():
