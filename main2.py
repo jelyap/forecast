@@ -3,15 +3,11 @@ import os
 import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine
-from dotenv import load_dotenv, find_dotenv
 from datetime import datetime
 
 st.title('Forecast App')
 
 @st.cache
-
-load_dotenv()
-
 
 def conn():
     dbname = os.getenv("DBNAME")
