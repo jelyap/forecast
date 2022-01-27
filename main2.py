@@ -10,22 +10,22 @@ st.title('Forecast App')
 @st.cache
 
 def conn():
-    dbname = os.getenv("DBNAME")
-    host = os.getenv("HOST")
-    port = os.getenv("PORT")
-    user = os.getenv("USERDB")
-    password = os.getenv("PASSWORD")
+    dbname = os.getenv(st.secrets["DBNAME"])
+    host = os.getenv(st.secrets["HOST"])
+    port = os.getenv(st.secrets["PORT"])
+    user = os.getenv(st.secrets["USERDB"])
+    password = os.getenv(st.secrets["PASSWORD"])
     engine = create_engine('postgresql://' + user + ':' + password + '@' + host + ':' + port + '/' + dbname)
 
     return engine
 
 
 def dev_conn():
-    dbname = os.getenv("DBNAME_DEV")
-    host = os.getenv("HOST_DEV")
-    port = os.getenv("PORT")
-    user = os.getenv("USERDB_DEV")
-    password = os.getenv("PASSWORD")
+    dbname = os.getenv(st.secrets["DBNAME_DEV"])
+    host = os.getenv(st.secrets["HOST_DEV"])
+    port = os.getenv(st.secrets["PORT"])
+    user = os.getenv(st.secrets["USERDB_DEV"])
+    password = os.getenv(st.secrets["PASSWORD"])
     engine = create_engine('postgresql://' + user + ':' + password + '@' + host + ':' + port + '/' + dbname)
 
     return engine
