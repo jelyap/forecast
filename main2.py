@@ -9,11 +9,11 @@ st.title("Carol's Forecast App")
 
 def conn():
     dbname = os.getenv(st.secrets["DBNAME"])
-    host = os.getenv(str(st.secrets["HOST"]))
+    host = os.getenv(st.secrets["HOST"])
     port = os.getenv(st.secrets["PORT"])
     user = os.getenv(st.secrets["USERDB"])
     password = os.getenv(st.secrets["PASSWORD"])
-    engine = create_engine('postgresql://' + user + ':' + password + '@' + host + ':' + port + '/' + dbname)
+    engine = create_engine('postgresql://' + user + ':' + password + '@' + str(host) + ':' + port + '/' + dbname)
 
     return engine
 
