@@ -216,5 +216,5 @@ if __name__ == '__main__':
 
     query = 'select count(1) from public.gen_v_monthly_forecast'
     df = pd.read_sql(query, engine_dev)
-    print(df)
-
+    
+    st.dataframe(data=df, width=None, height=None)
