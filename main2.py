@@ -8,8 +8,6 @@ from datetime import datetime
 
 st.title('Forecast App')
 
-@st.cache
-
 load_dotenv(find_dotenv())
 
 
