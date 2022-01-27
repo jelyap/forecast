@@ -24,7 +24,7 @@ def dev_conn():
     port = os.getenv(st.secrets["PORT"])
     user = os.getenv(st.secrets["USERDB_DEV"])
     password = os.getenv(st.secrets["PASSWORD"])
-    engine = create_engine('postgresql://' + user + ':' + password + '@' + host + ':' + port + '/' + dbname)
+    engine = create_engine('postgresql://' + user + ':' + password + '@' + str(host) + ':' + port + '/' + dbname)
 
     return engine
 
