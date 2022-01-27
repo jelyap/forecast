@@ -9,7 +9,7 @@ st.title("Carol's Forecast App")
 
 def conn():
     dbname = os.getenv(st.secrets["DBNAME"])
-    host = os.getenv(st.secrets["HOST"])
+    host = os.getenv(str(st.secrets["HOST"]))
     port = os.getenv(st.secrets["PORT"])
     user = os.getenv(st.secrets["USERDB"])
     password = os.getenv(st.secrets["PASSWORD"])
