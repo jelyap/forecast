@@ -7,8 +7,6 @@ from datetime import datetime
 
 st.title('Forecast App')
 
-@st.cache
-
 def conn():
     dbname = os.getenv(st.secrets["DBNAME"])
     host = os.getenv(st.secrets["HOST"])
