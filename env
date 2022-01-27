@@ -1,0 +1,11 @@
+# RS settings
+
+HOST=loop-rs-cluster.cr2qbnecy6id.us-west-2.redshift.amazonaws.com
+USERDB=loop
+DBNAME=looprsdb
+PASSWORD=L-edebaffa-e1e1-4a5b-b329-526032b35621
+PORT=5439
+
+HOST_DEV=35.82.141.80
+USERDB_DEV=loop
+DBNAME_DEV=looprsdbdev
