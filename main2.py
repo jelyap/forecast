@@ -1,5 +1,3 @@
-!pip install python-dotenv
-
 import streamlit as st
 import os
 import pandas as pd
@@ -225,12 +223,8 @@ if __name__ == '__main__':
     df = get_data(engine)
     # final_df = do_transform(df)
     monthly_df = calculate_monthly_forecast(df)
-    weekly_df = calculate_weekly_forecast(df)
-    #print(monthly_df)
+    # weekly_df = calculate_weekly_forecast(df)
+    
+    print(monthly_df)
     #print(weekly_df)
-    print('Creating gen_v_monthly_forecast...')
-    create_table(monthly_df, 'gen_v_monthly_forecast', engine_dev)
-    print('gen_v_monthly_forecast Created')
-    print('Creating gen_v_monthly_forecast...')
-    create_table(weekly_df, 'gen_v_weekly_forecast', engine_dev)
-    print('gen_v_weekly_forecast Created')
+
