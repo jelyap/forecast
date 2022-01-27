@@ -5,7 +5,7 @@ import numpy as np
 from sqlalchemy import create_engine
 from datetime import datetime
 
-st.title('Forecast App')
+st.title("Carol's Forecast App")
 
 def conn():
     dbname = os.getenv(st.secrets["DBNAME"])
