@@ -8,22 +8,22 @@ from datetime import datetime
 st.title("Carol's Forecast App")
 
 def conn():
-    dbname = os.getenv(st.secrets["DBNAME"])
-    host = os.getenv(st.secrets["HOST"])
-    port = os.getenv(str(st.secrets["PORT"]))
-    user = os.getenv(st.secrets["USERDB"])
-    password = os.getenv(st.secrets["PASSWORD"])
+    dbname = st.secrets["DBNAME"]
+    host = st.secrets["HOST"]
+    port = str(st.secrets["PORT"])
+    user = st.secrets["USERDB"]
+    password = st.secrets["PASSWORD"]
     engine = create_engine('postgresql://' + user + ':' + password + '@' + host + ':' + str(port) + '/' + dbname)
 
     return engine
 
 
 def dev_conn():
-    dbname = os.getenv(st.secrets["DBNAME_DEV"])
-    host = os.getenv(st.secrets["HOST_DEV"])
-    port = os.getenv(str(st.secrets["PORT"]))
-    user = os.getenv(st.secrets["USERDB_DEV"])
-    password = os.getenv(st.secrets["PASSWORD"])
+    dbname = st.secrets["DBNAME_DEV"]
+    host = st.secrets["HOST_DEV"]
+    port = str(st.secrets["PORT"])
+    user = st.secrets["USERDB_DEV"]
+    password = st.secrets["PASSWORD"]
     engine = create_engine('postgresql://' + user + ':' + password + '@' + host + ':' + str(port) + '/' + dbname)
 
     return engine
