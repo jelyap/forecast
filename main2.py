@@ -219,4 +219,4 @@ if __name__ == '__main__':
                 from public.gen_v_monthly_forecast"""
     df = pd.read_sql(query, engine_dev)
     
-    st.dataframe(data=df, width=1200, height=1000)
+    st.dataframe(data=df.assign(hack='').set_index('hack'), width=1200, height=1000)
