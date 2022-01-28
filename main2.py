@@ -219,6 +219,15 @@ if __name__ == '__main__':
                 from public.gen_v_monthly_forecast"""
     df = pd.read_sql(query, engine_dev)
     
-    df.set_index('product', inplace=True)
+    # CSS to inject contained in a string
+    hide_table_row_index = """
+                <style>
+                tbody th {display:none}
+                .blank {display:none}
+                </style>
+                """
+
+    # Inject CSS with Markdown
+    st.markdown(hide_table_row_index, unsafe_allow_html=True)
     
     st.dataframe(data=df, width=1200, height=1000)
