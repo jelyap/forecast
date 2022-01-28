@@ -239,11 +239,17 @@ if __name__ == '__main__':
     # Inject CSS with Markdown
     st.markdown(hide_table_row_index, unsafe_allow_html=True)
     
-    product = df['product'].drop_duplicates()
-    product_choice = st.sidebar.selectbox('Select Product:', product)
+    category = df['category'].drop_duplicates()
+    category_choice = st.sidebar.selectbox('Select Category:', category)
     
-    sku = df["sku"].loc[df["product"] == product_choice].drop_duplicates()
-    sku_choice = st.sidebar.selectbox('', sku)
+    brand = df["brand"].loc[df["category"] == category_choice].drop_duplicates()
+    brand_choice = st.sidebar.selectbox('Select Brand', brand)
+    
+    product = df["product"].loc[(df["category"] == category_choice) & (df["brand"] == brand_choice)].drop_duplicates()
+    product_choice = st.sidebar.selectbox('SKU', sku)
+    
+    sku = df["sku"].loc[(df["product"] == product_choice) & df["category"] == category_choice) & (df["brand"] == brand_choice)].drop_duplicates()
+    sku_choice = st.sidebar.selectbox('SKU', sku)
     
     st.table(df)
    
