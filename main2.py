@@ -240,19 +240,21 @@ if __name__ == '__main__':
     st.markdown(hide_table_row_index, unsafe_allow_html=True)
     
     status = df['status'].drop_duplicates()
-    status_choice = st.sidebar.selectbox('Select Inventory Status:', status)
+    status_choice = st.sidebar.selectbox('Inventory Status:', status)
     
     category = df['category'].loc[df["status"] == status_choice].drop_duplicates()
-    category_choice = st.sidebar.selectbox('Select Category:', category)
+    category_choice = st.sidebar.selectbox('Category:', category)
     
     brand = df["brand"].loc[(df["category"] == category_choice) & (df["status"] == status_choice)].drop_duplicates()
-    brand_choice = st.sidebar.selectbox('Select Brand', brand)
+    brand_choice = st.sidebar.selectbox('Brand', brand)
     
     product = df["product"].loc[(df["category"] == category_choice) & (df["brand"] == brand_choice) & (df["status"] == status_choice)].drop_duplicates()
-    product_choice = st.sidebar.selectbox('SKU', product)
+    product_choice = st.sidebar.selectbox('Product', product)
     
     sku = df["sku"].loc[(df["product"] == product_choice) & (df["category"] == category_choice) & (df["brand"] == brand_choice) & (df["status"] == status_choice)].drop_duplicates()
     sku_choice = st.sidebar.selectbox('SKU', sku)
+    
+    df = df.loc[(df["product"] == product_choice) & (df["category"] == category_choice) & (df["brand"] == brand_choice) & (df["status"] == status_choice) & (df["sku"] == sku_choice)]
     
     st.table(df)
    
