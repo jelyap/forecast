@@ -240,7 +240,7 @@ if __name__ == '__main__':
     st.markdown(hide_table_row_index, unsafe_allow_html=True)
     
     product = df['product'].drop_duplicates()
-    product_choice = st.sidebar.selectbox('Select Product:', makes)
+    product_choice = st.sidebar.selectbox('Select Product:', product)
     
     sku = df["sku"].loc[df["product"] == product_choice].drop_duplicates()
     sku_choice = st.sidebar.selectbox('', sku)
