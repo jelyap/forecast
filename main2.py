@@ -230,4 +230,5 @@ if __name__ == '__main__':
     # Inject CSS with Markdown
     st.markdown(hide_table_row_index, unsafe_allow_html=True)
     
-    st.dataframe(data=df, width=1200, height=1000)
+    st.table(df)
+    #st.dataframe(data=df, width=1200, height=1000)
