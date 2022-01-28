@@ -214,7 +214,7 @@ if __name__ == '__main__':
 
     engine_dev = dev_conn()
 
-    query = 'select count(1) from public.gen_v_monthly_forecast'
+    query = 'select * from public.gen_v_monthly_forecast'
     df = pd.read_sql(query, engine_dev)
     
     st.dataframe(data=df, width=None, height=None)
