@@ -214,9 +214,12 @@ if __name__ == '__main__':
 
     engine_dev = dev_conn()
 
-    query = """select "product-name" as Product , "product-sku" as SKU , "product-category" as Category , "product-brand" as Brand , "re-order" as Re-Order, 
-                projection as Projection, "latest-inv-level" as Inventory , forecast_trend as Trend 
-                from public.gen_v_monthly_forecast"""
+    #query = """select "product-name" as Product, "product-sku" as SKU, "product-category" as Category, "product-brand" as Brand, "re-order" as Re-Order, 
+     #           projection as Projection, "latest-inv-level" as Inventory , forecast_trend as Trend 
+      #          from public.gen_v_monthly_forecast"""
+    
+    query = "select count(*) from public.gen_v_monthly_forecast"
+    
     df = pd.read_sql(query, engine_dev)
     
     # CSS to inject contained in a string
