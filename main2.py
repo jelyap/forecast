@@ -223,6 +223,10 @@ if __name__ == '__main__':
  
     df = pd.read_sql(query, engine_dev)
     
+    df['re-order']=  df['Re-Order'].astype(int)
+    df['forecast']=  df['Re-Order'].astype(int)
+    df['inventory']=  df['Re-Order'].astype(int)
+    
     # CSS to inject contained in a string
     hide_table_row_index = """
                 <style>
