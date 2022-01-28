@@ -214,7 +214,9 @@ if __name__ == '__main__':
 
     engine_dev = dev_conn()
 
-    query = 'select * from public.gen_v_monthly_forecast'
+    query = f'select "product-name" , "product-sku" , "product-category" , "product-brand" , "re-order" , projection , "latest-inv-level" as inventory , forecast_trend , "mtd-performance", 
+                + f'"0-month-0" as current_mtd, previous_mtd, "3-month-avg-qty", "0-month-1" as "m-1" , "0-month-2" as "m-2"  
+                + f'from public.gen_v_monthly_forecast'
     df = pd.read_sql(query, engine_dev)
     
     st.dataframe(data=df, width=None, height=None)
