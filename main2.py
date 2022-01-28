@@ -234,5 +234,6 @@ if __name__ == '__main__':
     # Inject CSS with Markdown
     st.markdown(hide_table_row_index, unsafe_allow_html=True)
     
+    st.markdown('<style>div[title="Good"] { color: green; } div[title="Place Order"] { color: red; } .data:hover{ background:rgb(243 246 255)}</style>', unsafe_allow_html=True)
     st.table(df)
    
