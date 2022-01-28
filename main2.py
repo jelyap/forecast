@@ -223,9 +223,9 @@ if __name__ == '__main__':
  
     df = pd.read_sql(query, engine_dev)
     
-    df['re-order']=  df['Re-Order'].astype(int)
-    df['forecast']=  df['Re-Order'].astype(int)
-    df['inventory']=  df['Re-Order'].astype(int)
+    df['re-order'] =  df['re-order'].astype(int)
+    df['forecast'] =  df['forecast'].astype(int)
+    df['inventory'] =  df['inventory'].astype(int)
     
     # CSS to inject contained in a string
     hide_table_row_index = """
@@ -238,6 +238,5 @@ if __name__ == '__main__':
     # Inject CSS with Markdown
     st.markdown(hide_table_row_index, unsafe_allow_html=True)
     
-    st.markdown('<style>div[title="Good"] { color: green; } div[title="Place Order"] { color: red; } .data:hover{ background:rgb(243 246 255)}</style>', unsafe_allow_html=True)
     st.table(df)
    
