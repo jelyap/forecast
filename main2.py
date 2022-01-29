@@ -215,7 +215,7 @@ if __name__ == '__main__':
     engine_dev = dev_conn()
 
     query = """
-                select "product-name" as Product, "product-sku" as SKU , "product-category" as Category, "product-brand" as Brand , 
+                select "product-name" as "Product", "product-sku" as SKU , "product-category" as Category, "product-brand" as Brand , 
                 "re-order" as "Re-Order", projection as Forecast , "latest-inv-level" as Inventory , status as Status
                 from public.gen_v_monthly_forecast
                 order by status DESC
