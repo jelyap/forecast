@@ -84,7 +84,6 @@ if __name__ == '__main__':
     else:
         status_choice_filter = status_choice
     
-    
     category = df['category'].loc[df["status"] == status_choice_filter].drop_duplicates().sort_values()
     category = pd.concat([pd.Series(['All']), category])
     category_choice = st.sidebar.selectbox('Category', category)
@@ -94,11 +93,18 @@ if __name__ == '__main__':
     else:
         category_choice_filter = category_choice
     
-    
     brand = df['brand'].loc[(df["status"] == status_choice_filter) & (df["category"] == category_choice_filter)].drop_duplicates().sort_values()
     brand = pd.concat([pd.Series(['All']), brand])
     brand_choice = st.sidebar.selectbox('Brand', brand)
     
+    if brand_choice == "All":
+        brand_choice_filter = df['brand']
+    else:
+        brand_choice_filter = brand_choice
+    
+    product = df['product'].loc[(df["status"] == status_choice_filter) & (df["category"] == category_choice_filter) & (df["brand"] == brand_choice_filter)].drop_duplicates().sort_values()
+    product = pd.concat([pd.Series(['All']), product])
+    product_choice = st.sidebar.selectbox('Product Name', product)
     
     
 
