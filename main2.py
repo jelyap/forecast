@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine
 from datetime import datetime
+from st_aggrid import AgGrid
 
 st.title("Inventory Forecast")
 
@@ -94,5 +95,6 @@ if __name__ == '__main__':
     if filt_choice == "Filter":
         df = df.loc[(df["product"] == product_choice) & (df["category"] == category_choice) & (df["brand"] == brand_choice) & (df["status"] == status_choice) & (df["sku"] == sku_choice)]
     
-    st.table(df)
+    #st.table(df)
+    AgGrid(df)
    
