@@ -74,10 +74,9 @@ if __name__ == '__main__':
     # Inject CSS with Markdown
     st.markdown(hide_table_row_index, unsafe_allow_html=True)
     
-    filt = ['Show All','Filter']
-    filt_choice = st.sidebar.selectbox('Filter Products?', filt)
-    
-    status = df['status'].drop_duplicates()
+    status = df['category'].loc[df["status"] == status_choice].drop_duplicates().to_list()
+    status.insert(0,'All')
+    #status = df['status'].drop_duplicates()
     status_choice = st.sidebar.selectbox('Inventory Status', status)
     
     category = df['category'].loc[df["status"] == status_choice].drop_duplicates()
@@ -92,9 +91,7 @@ if __name__ == '__main__':
     sku = df["sku"].loc[(df["product"] == product_choice) & (df["category"] == category_choice) & (df["brand"] == brand_choice) & (df["status"] == status_choice)].drop_duplicates()
     sku_choice = st.sidebar.selectbox('SKU', sku)
     
-    if filt_choice == "Filter":
-        df = df.loc[(df["product"] == product_choice) & (df["category"] == category_choice) & (df["brand"] == brand_choice) & (df["status"] == status_choice) & (df["sku"] == sku_choice)]
-    
+
     #st.table(df)
     AgGrid(df)
    
