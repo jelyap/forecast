@@ -106,8 +106,21 @@ if __name__ == '__main__':
     product = pd.concat([pd.Series(['All']), product])
     product_choice = st.sidebar.selectbox('Product Name', product)
     
+    if product_choice == "All":
+        product_choice_filter = df['product']
+    else:
+        product_choice_filter = product_choice
     
-
+    sku = df['sku'].loc[(df["status"] == status_choice_filter) & (df["category"] == category_choice_filter) & (df["brand"] == brand_choice_filter) & (df["product"] == product_choice_filter)].drop_duplicates().sort_values()
+    sku = pd.concat([pd.Series(['All']), sku])
+    sku_choice = st.sidebar.selectbox('SKU', sku)
+    
+    if sku_choice == "All":
+        sku_choice_filter = df['sku']
+    else:
+        sku_choice_filter = sku_choice
+        
+    df = df.loc[(df["status"] == status_choice_filter) & (df["category"] == category_choice_filter) & (df["brand"] == brand_choice_filter) & (df["product"] == product_choice_filter) & (df["sku"] == sku_choice_filter)]
     
     AgGrid(df)
    
