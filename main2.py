@@ -76,6 +76,7 @@ if __name__ == '__main__':
     
     status = df['category'].loc[df["status"] == status_choice].drop_duplicates().to_list()
     status.insert(0,'All')
+    status = pd.Series(status)
     #status = df['status'].drop_duplicates()
     status_choice = st.sidebar.selectbox('Inventory Status', status)
     
