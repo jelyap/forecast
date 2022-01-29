@@ -78,10 +78,10 @@ if __name__ == '__main__':
     filt_choice = st.sidebar.selectbox('Filter Products?', filt)
     
     status = df['status'].drop_duplicates()
-    status_choice = st.sidebar.selectbox('Inventory Status:', status)
+    status_choice = st.sidebar.selectbox('Inventory Status', status)
     
     category = df['category'].loc[df["status"] == status_choice].drop_duplicates()
-    category_choice = st.sidebar.selectbox('Category:', category)
+    category_choice = st.sidebar.selectbox('Category', category)
     
     brand = df["brand"].loc[(df["category"] == category_choice) & (df["status"] == status_choice)].drop_duplicates()
     brand_choice = st.sidebar.selectbox('Brand', brand)
