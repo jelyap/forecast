@@ -76,12 +76,13 @@ if __name__ == '__main__':
     
     status = df['status'].drop_duplicates().to_list()
     status.insert(0,'All')
-    #status = pd.Series(status)
-    #status = df['status'].drop_duplicates()
     status_choice = st.sidebar.selectbox('Inventory Status', status)
     
-    #category = df['category'].loc[df["status"] == status_choice].drop_duplicates()
-    #category_choice = st.sidebar.selectbox('Category', category)
+    if status_choice == "All":
+        category = df['category'].drop_duplicates()
+    else:
+        category = df['category'].loc[df["status"] == status_choice].drop_duplicates()
+    category_choice = st.sidebar.selectbox('Category', category)
     
     #brand = df["brand"].loc[(df["category"] == category_choice) & (df["status"] == status_choice)].drop_duplicates()
     #brand_choice = st.sidebar.selectbox('Brand', brand)
