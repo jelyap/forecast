@@ -74,8 +74,9 @@ if __name__ == '__main__':
     # Inject CSS with Markdown
     st.markdown(hide_table_row_index, unsafe_allow_html=True)
     
-    status = df['status'].drop_duplicates().to_list()
-    status.insert(0,'All')
+    
+    status = df['status'].drop_duplicates().sort_values()
+    status = pd.concat([pd.Series(['All]), status])
     status_choice = st.sidebar.selectbox('Inventory Status', status)
     
     if status_choice == "All":
