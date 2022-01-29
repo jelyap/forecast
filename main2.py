@@ -84,18 +84,24 @@ if __name__ == '__main__':
     else:
         status_choice_filter = status_choice
     
+    
     category = df['category'].loc[df["status"] == status_choice_filter].drop_duplicates().sort_values()
     category = pd.concat([pd.Series(['All']), category])
     category_choice = st.sidebar.selectbox('Category', category)
     
-    #brand = df["brand"].loc[(df["category"] == category_choice) & (df["status"] == status_choice)].drop_duplicates()
-    #brand_choice = st.sidebar.selectbox('Brand', brand)
+    if category_choice == "All":
+        category_choice_filter = df['category']
+    else:
+        category_choice_filter = category_choice
     
-    #product = df["product"].loc[(df["category"] == category_choice) & (df["brand"] == brand_choice) & (df["status"] == status_choice)].drop_duplicates()
-    #product_choice = st.sidebar.selectbox('Product', product)
     
-    #sku = df["sku"].loc[(df["product"] == product_choice) & (df["category"] == category_choice) & (df["brand"] == brand_choice) & (df["status"] == status_choice)].drop_duplicates()
-    #sku_choice = st.sidebar.selectbox('SKU', sku)
+    brand = df['brand'].loc[(df["status"] == status_choice_filter) & (df["category"] == category_choice_filter)].drop_duplicates().sort_values()
+    brand = pd.concat([pd.Series(['All']), brand])
+    brand_choice = st.sidebar.selectbox('Brand', brand)
+    
+    
+    
+
     
     AgGrid(df)
    
