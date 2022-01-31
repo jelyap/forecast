@@ -195,7 +195,7 @@ if __name__ == '__main__':
                         from public.custom_mview_genv cmg 
                         where "product-active" = 1
                         and "product-sku" = '
-                     """ + str(sku_chouce) + "'"
+                     """ + str(sku_choice) + "'"
 
         df2 = pd.read_sql(query_prod, engine)
     
