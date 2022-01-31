@@ -152,7 +152,7 @@ if __name__ == '__main__':
     st.download_button(
          label="Download Forecast As CSV",
          data=csv,
-         file_name='Forecast.csv',
-         mime='Forecast/csv',
+         file_name='InventoryForecast.csv',
+         mime='InventoryForecast/csv',
      )
 
