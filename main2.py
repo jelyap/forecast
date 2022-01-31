@@ -134,9 +134,9 @@ if __name__ == '__main__':
     grid_options = gb.build()
     
     custom_css = {
-        ".good-green": {"color": "green"},
-        ".order-red": {"color": "red"},
-        ".check-yellow": {"color": "orange"},
+        ".good-green": {"color": "green !important"},
+        ".order-red": {"color": "red !important"},
+        ".check-yellow": {"color": "orange !important"},
     }
     
     AgGrid(df,theme="streamlit", custom_css=custom_css, gridOptions=grid_options)
