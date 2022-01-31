@@ -15,9 +15,7 @@ def conn():
     user = st.secrets["USERDB"]
     password = st.secrets["PASSWORD"]
     engine = create_engine('postgresql://' + user + ':' + password + '@' + host + ':' + str(port) + '/' + dbname)
-
     return engine
-
 
 def dev_conn():
     dbname = st.secrets["DBNAME_DEV"]
@@ -26,7 +24,6 @@ def dev_conn():
     user = st.secrets["USERDB_DEV"]
     password = st.secrets["PASSWORD"]
     engine = create_engine('postgresql://' + user + ':' + password + '@' + host + ':' + str(port) + '/' + dbname)
-
     return engine
 
 def get_data(engine):
@@ -37,9 +34,7 @@ def get_data(engine):
     # Ensuring date formats
     df['transaction-time'] = pd.to_datetime(df['transaction-time'], format='%Y%m%d %H:%M:%S')
     df['inventory-created-at'] = pd.to_datetime(df['inventory-created-at'], format='%Y%m%d %H:%M:%S')
-
     return df
-
 
 def create_table(df, table_name, engine):
     df.to_sql(name=table_name, con=engine, schema='public', if_exists='replace', index=False, method='multi')
@@ -66,18 +61,6 @@ if __name__ == '__main__':
     df['reorder'] =  df['reorder'].astype(int)
     df['forecast'] =  df['forecast'].astype(int)
     df['inventory'] =  df['inventory'].astype(int)
-    
-    # CSS to inject contained in a string
-    hide_table_row_index = """
-                <style>
-                tbody th {display:none}
-                .blank {display:none}
-                </style>
-                """
-
-    # Inject CSS with Markdown
-    st.markdown(hide_table_row_index, unsafe_allow_html=True)
-    
     
     status = df['status'].drop_duplicates().sort_values()
     status = pd.concat([pd.Series(['All']), status])
