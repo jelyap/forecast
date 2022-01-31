@@ -139,8 +139,8 @@ if __name__ == '__main__':
             }
         } else {
             return {
-                'color': 'black',
-                'backgroundColor': 'green'
+                'color': 'white',
+                'backgroundColor': 'lightgreen'
             }
         }
     };
