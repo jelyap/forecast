@@ -53,7 +53,11 @@ if __name__ == '__main__':
                 select "product-name" as "Product", "product-sku" as SKU , "product-category" as Category, "product-brand" as Brand , 
                 "re-order" as "ReOrder", projection as Forecast , "latest-inv-level" as Inventory, forecast_trend as Trend ,status as Status
                 from public.gen_v_monthly_forecast
-                order by status DESC
+                order by case
+                    when status = 'Place Order' then 1
+                    when status = 'Check Product' then 2
+                    when status = 'Good' then 3
+                end asc
             """
     
  
