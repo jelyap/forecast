@@ -191,7 +191,7 @@ if __name__ == '__main__':
         engine = conn()
 
         query_prod = """
-                        select to_char("transaction-time", 'YYYY-MM-DD') as date, sum(quantity) as quantity
+                        select to_char("transaction-time", 'YYYY-MM-DD') as "transaction-time", sum(quantity) as quantity
                         from public.custom_mview_genv cmg 
                         where "product-active" = 1
                         and "product-sku" = '""" + (str(sku_choice)) + "'" + """ group by 1 order by "transaction-time" """ 
