@@ -199,5 +199,4 @@ if __name__ == '__main__':
 
         df2 = pd.read_sql(query_prod, engine)
         
-        AgGrid(df2)
-        st.bar_chart(data=df2)
+        st.line_chart(df2.rename(columns={'transaction-time':'index'}).set_index('index'))
