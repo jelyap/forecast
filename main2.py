@@ -140,7 +140,7 @@ if __name__ == '__main__':
         }
     };
     """)
-    gb.configure_column("group", cellStyle=cellsytle_jscode)
+    gb.configure_column("status", cellStyle=cellsytle_jscode)
     
     gb.configure_grid_options(domLayout='normal')
     gridOptions = gb.build()
@@ -154,11 +154,11 @@ if __name__ == '__main__':
     #gb.configure_grid_options(rowClassRules=row_class_rules)
     #grid_options = gb.build()
     
-    custom_css = {
-        ".good-green": {"color": "green !important"},
-        ".order-red": {"color": "red !important"},
-        ".check-yellow": {"color": "orange !important"},
-    }
+    #custom_css = {
+    #    ".good-green": {"color": "green !important"},
+    #    ".order-red": {"color": "red !important"},
+    #    ".check-yellow": {"color": "orange !important"},
+    #}
     
     AgGrid(df, gridOptions=gridOptions, allow_unsafe_jscode=True)
     
