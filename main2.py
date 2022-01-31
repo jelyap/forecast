@@ -192,7 +192,7 @@ if __name__ == '__main__':
         engine = conn()
 
         query_prod = """
-                        select to_char("transaction-time", 'YYYY-MM') as "transaction-time", sum(quantity) as quantity
+                        select to_char("transaction-time", 'YYYY-MM') as "transaction-time", sum(quantity) as Historical
                         from public.custom_mview_genv cmg 
                         where "product-active" = 1
                         and "product-sku" = '""" + (str(sku_choice)) + "'" + """ group by 1 order by "transaction-time" """ 
@@ -202,7 +202,3 @@ if __name__ == '__main__':
         
         st.line_chart(df2.rename(columns={'transaction-time':'index'}).set_index('index'))
         
-        fig = px.line(df2, x="Month", y="Quantity", color='Historical')
-
-        # Plot!
-        st.plotly_chart(fig, use_container_width=True)
