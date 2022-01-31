@@ -200,5 +200,5 @@ if __name__ == '__main__':
 
         df2 = pd.read_sql(query_prod, engine)
         
-        st.line_chart(df2.rename(columns={'transaction-time':'index'}).set_index('index'))
+        st.line_chart(df2.rename(columns={'transaction-time':'index'}).set_index('index'),use_container_width=True)
         
