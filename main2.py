@@ -195,10 +195,10 @@ if __name__ == '__main__':
                         from public.custom_mview_genv cmg 
                         where "product-active" = 1
                         and "product-sku" = '
-                     """ + str(sku_choice) + "'" + """group by "transaction-time" """ 
+                     """ + str(sku_choice) + "'" + """ group by "transaction-time" """ 
                      
 
         df2 = pd.read_sql(query_prod, engine)
     
-        st.title(query_prod)
+        st.subheader(query_prod)
         #AgGrid(df2)
