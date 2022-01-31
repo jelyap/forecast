@@ -182,7 +182,7 @@ if __name__ == '__main__':
     gb.configure_grid_options(domLayout='normal')
     gridOptions = gb.build()
     
-    df.rename(columns={"product": "Product", 
+    df = df.rename(columns={"product": "Product", 
                        "sku": "SKU",
                        "category": "Category", 
                        "brand": "Brand",
