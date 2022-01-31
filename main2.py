@@ -126,8 +126,8 @@ if __name__ == '__main__':
     
     row_class_rules = {
         "order-red": "data.status == 'Place Order'",
-        "check-yellow": "data.status == 'Check Status'",
-        "good-green": "data.side == 'Good'",
+        "check-yellow": "data.status == 'Check Product'",
+        "good-green": "data.status == 'Good'",
     }
     
     gb.configure_grid_options(rowClassRules=row_class_rules)
