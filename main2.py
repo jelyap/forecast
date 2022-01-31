@@ -135,7 +135,7 @@ if __name__ == '__main__':
         if (params.value == 'Alert 2') {
             return {
                 'color': 'black',
-                'backgroundColor': 'lightred'
+                'backgroundColor': 'red'
             }
         } else if (params.value == 'Alert 1') {
             return {
