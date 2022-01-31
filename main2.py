@@ -122,26 +122,7 @@ if __name__ == '__main__':
         
     df = df.loc[(df["status"] == status_choice_filter) & (df["category"] == category_choice_filter) & (df["brand"] == brand_choice_filter) & (df["product"] == product_choice_filter) & (df["sku"] == sku_choice_filter)]
     
-    #configures last row to use custom styles based on cell's value, injecting JsCode on components front end
-    cellsytle_jscode = JsCode("""
-    function(params) {
-        if (params.value == 'Place Order') {
-            return {
-                'color': 'white',
-                'backgroundColor': 'darkred'
-            }
-        } else {
-            return {
-                'color': 'black',
-                'backgroundColor': 'green'
-            }
-        }
-    };
-    """)
-    gb.configure_column("group", cellStyle=cellsytle_jscode)
-    
-    
-    AgGrid(df,allow_unsafe_jscode=True)
+    AgGrid(df)
     
     @st.cache
     
