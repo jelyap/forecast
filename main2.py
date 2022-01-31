@@ -200,5 +200,5 @@ if __name__ == '__main__':
 
         df2 = pd.read_sql(query_prod, engine)
     
-        print(query_prod)
+        st.title(query_prod)
         #AgGrid(df2)
