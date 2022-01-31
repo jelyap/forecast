@@ -132,10 +132,15 @@ if __name__ == '__main__':
                 'color': 'white',
                 'backgroundColor': 'darkred'
             }
+        } else if (params.value == 'Check Product') {
+            return {
+                'color': 'white',
+                'backgroundColor': 'orange'
+            }
         } else {
             return {
                 'color': 'black',
-                'backgroundColor': 'white'
+                'backgroundColor': 'green'
             }
         }
     };
@@ -144,21 +149,6 @@ if __name__ == '__main__':
     
     gb.configure_grid_options(domLayout='normal')
     gridOptions = gb.build()
-    
-    #row_class_rules = {
-    #    "order-red": "data.status == 'Place Order'",
-    #    "check-yellow": "data.status == 'Check Product'",
-    #    "good-green": "data.status == 'Good'",
-    #}
-    
-    #gb.configure_grid_options(rowClassRules=row_class_rules)
-    #grid_options = gb.build()
-    
-    #custom_css = {
-    #    ".good-green": {"color": "green !important"},
-    #    ".order-red": {"color": "red !important"},
-    #    ".check-yellow": {"color": "orange !important"},
-    #}
     
     AgGrid(df, gridOptions=gridOptions, allow_unsafe_jscode=True)
     
