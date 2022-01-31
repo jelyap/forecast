@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine
 from datetime import datetime
-from st_aggrid import AgGrid, GridOptionsBuilder, JsCode
+from st_aggrid import  GridOptionsBuilder, AgGrid, GridUpdateMode, DataReturnMode, JsCode
 
 st.title("Inventory Forecast")
 
@@ -160,7 +160,7 @@ if __name__ == '__main__':
         ".check-yellow": {"color": "orange !important"},
     }
     
-    AgGrid(df, custom_css=custom_css, gridOptions=grid_options)
+    AgGrid(df, gridOptions=gridOptions)
     
     @st.cache
     
