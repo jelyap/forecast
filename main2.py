@@ -32,7 +32,7 @@ if __name__ == '__main__':
     engine_dev = dev_conn()
 
     query = """
-                select "product-variant-name" as "Variant", "product-sku" as SKU , "product-name" as "Product" , "product-category" as Category, "product-brand" as Brand , 
+                select "product-variant-name" as "Variant", "product-sku" as SKU , "product-category" as Category, "product-brand" as Brand , "product-name" as "Product" ,
                 "re-order" as "ReOrder", projection as Forecast , "latest-inv-level" as Inventory, forecast_trend as Trend ,status as Status
                 from public.gen_v_monthly_forecast
                 order by case
