@@ -141,7 +141,7 @@ if __name__ == '__main__':
     gb.configure_column("group", cellStyle=cellsytle_jscode)
     
     
-    AgGrid(df)
+    AgGrid(df,allow_unsafe_jscode=True)
     
     @st.cache
     
