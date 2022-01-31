@@ -8,6 +8,7 @@ from datetime import datetime
 from st_aggrid import  GridOptionsBuilder, AgGrid, GridUpdateMode, DataReturnMode, JsCode
 
 st.title("Inventory Forecast")
+st.subheader("Monthly")
 
 def conn():
     dbname = st.secrets["DBNAME"]
