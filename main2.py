@@ -126,6 +126,16 @@ if __name__ == '__main__':
         
     df = df.loc[(df["status"] == status_choice_filter) & (df["category"] == category_choice_filter) & (df["brand"] == brand_choice_filter) & (df["product"] == product_choice_filter) & (df["sku"] == sku_choice_filter)]
     
+    df.rename(columns={"product": "Product", 
+                            "sku": "SKU",
+                            "category": "Category",
+                            "brand": "Brand",
+                            "reorder": "ReOrder",
+                            "forecast": "Forecast",
+                            "inventory": "Inventory",
+                            "trend": "Trend",
+                            "status": "Status"})
+    
     gb = GridOptionsBuilder.from_dataframe(df)
     
     #configures last row to use custom styles based on cell's value, injecting JsCode on components front end
@@ -149,7 +159,7 @@ if __name__ == '__main__':
         }
     };
     """)
-    gb.configure_column("status", cellStyle=cellsytle_jscode)
+    gb.configure_column("Status", cellStyle=cellsytle_jscode)
     
     cellsytle_jscode_2 = JsCode("""
     function(params) {
@@ -181,7 +191,7 @@ if __name__ == '__main__':
         }
     };
     """)
-    gb.configure_column("trend", cellStyle=cellsytle_jscode_2)
+    gb.configure_column("Trend", cellStyle=cellsytle_jscode_2)
     
     gb.configure_grid_options(domLayout='normal')
     gridOptions = gb.build()
