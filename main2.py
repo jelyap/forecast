@@ -182,17 +182,6 @@ if __name__ == '__main__':
     gb.configure_grid_options(domLayout='normal')
     gridOptions = gb.build()
     
-    df = df.rename(columns={"product": "Product", 
-                       "sku": "SKU",
-                       "category": "Category", 
-                       "brand": "Brand",
-                       "reorder": "Reorder QTY", 
-                       "forecast": "Forecasted Sales",
-                       "inventory": "Current Inventory", 
-                       "trend": "Forecast Trend",
-                       "status": "Inventory Status"}
-             )
-    
     AgGrid(df, gridOptions=gridOptions, allow_unsafe_jscode=True)
     
     @st.cache
