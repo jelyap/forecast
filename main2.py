@@ -123,14 +123,13 @@ if __name__ == '__main__':
     df = df.loc[(df["status"] == status_choice_filter) & (df["category"] == category_choice_filter) & (df["brand"] == brand_choice_filter) & (df["product"] == product_choice_filter) & (df["sku"] == sku_choice_filter)]
     
     def color_positive_green(val):
-
-    if val == 'Place Order':
-        color = 'red'
-    elif val == 'Check Status':
-        color = 'yellow'
-    else:
-        color = 'green'
-    return 'color: %s' % color
+        if val == 'Place Order':
+            color = 'red'
+        elif val == 'Check Status':
+            color = 'yellow'
+        else:
+            color = 'green'
+        return 'color: %s' % color
  
     df.style.applymap(color_positive_green)
     
