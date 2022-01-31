@@ -152,12 +152,12 @@ if __name__ == '__main__':
         if (params.value == 'Alert 2') {
             return {
                 'color': 'black',
-                'backgroundColor': 'lightred'
+                'backgroundColor': 'pink'
             }
         } else if (params.value == 'Alert 1') {
             return {
                 'color': 'black',
-                'backgroundColor': 'pink'
+                'backgroundColor': 'lightred'
             }
         } else if (params.value == 'Lower') {
             return {
