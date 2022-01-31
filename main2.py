@@ -123,4 +123,19 @@ if __name__ == '__main__':
     df = df.loc[(df["status"] == status_choice_filter) & (df["category"] == category_choice_filter) & (df["brand"] == brand_choice_filter) & (df["product"] == product_choice_filter) & (df["sku"] == sku_choice_filter)]
     
     AgGrid(df)
-   
+    
+    @st.cache
+    
+    def convert_df(df):
+     # IMPORTANT: Cache the conversion to prevent computation on every rerun
+     return df.to_csv().encode('utf-8')
+
+    csv = convert_df(df)
+
+    st.download_button(
+         label="Download Forecast As CSV",
+         data=csv,
+         file_name='Forecast.csv',
+         mime='Forecast/csv',
+     )
+
