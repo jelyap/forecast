@@ -199,5 +199,5 @@ if __name__ == '__main__':
 
         df2 = pd.read_sql(query_prod, engine)
     
-        df2 = df2['transaction-time','quantity'].groupby(by=['transaction-time'])['quantity'].sum()
+        df2 = df2.groupby(by=['transaction-time'])['quantity'].sum()
         AgGrid(df2)
