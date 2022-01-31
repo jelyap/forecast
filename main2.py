@@ -197,4 +197,8 @@ if __name__ == '__main__':
     
     df2 = pd.read_sql(query_prod, engine)
     
-    AgGrid(df2)
+    if sku_choice != "All":
+        df2.groupby(by=['product-name','product-sku','product-category','product-brand','transaction-time'])["quantity"].sum()
+        df2 = df2.loc[df["sku"] == sku_choice]
+        df2 = df2['transaction-time','quantity']
+        AgGrid(df2)
