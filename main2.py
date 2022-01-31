@@ -32,7 +32,7 @@ if __name__ == '__main__':
     engine_dev = dev_conn()
 
     query = """
-                select "product-name" as "Product", "product-sku" as SKU , "product-variant-name" as "Variant" , "product-category" as Category, "product-brand" as Brand , 
+                select "product-variant-name" as "Variant", "product-sku" as SKU , "product-name" as "Product" , "product-category" as Category, "product-brand" as Brand , 
                 "re-order" as "ReOrder", projection as Forecast , "latest-inv-level" as Inventory, forecast_trend as Trend ,status as Status
                 from public.gen_v_monthly_forecast
                 order by case
@@ -84,8 +84,17 @@ if __name__ == '__main__':
         product_choice_filter = df['product']
     else:
         product_choice_filter = product_choice
+        
+    variant = df['variant'].loc[(df["status"] == status_choice_filter) & (df["category"] == category_choice_filter) & (df["brand"] == brand_choice_filter) & (df["product"] == product_choice_filter)].drop_duplicates().sort_values()
+    variant = pd.concat([pd.Series(['All']), variant])
+    variant_choice = st.sidebar.selectbox('Variant', variant)
     
-    sku = df['sku'].loc[(df["status"] == status_choice_filter) & (df["category"] == category_choice_filter) & (df["brand"] == brand_choice_filter) & (df["product"] == product_choice_filter)].drop_duplicates().sort_values()
+    if variant_choice == "All":
+        variant_choice_filter = df['variant']
+    else:
+        variant_choice_filter = variant_choice
+    
+    sku = df['sku'].loc[(df["status"] == status_choice_filter) & (df["category"] == category_choice_filter) & (df["brand"] == brand_choice_filter) & (df["product"] == product_choice_filter) & (df["variant"] == variant_choice_filter)].drop_duplicates().sort_values()
     sku = pd.concat([pd.Series(['All']), sku])
     sku_choice = st.sidebar.selectbox('SKU', sku)
     
@@ -94,7 +103,7 @@ if __name__ == '__main__':
     else:
         sku_choice_filter = sku_choice
         
-    df = df.loc[(df["status"] == status_choice_filter) & (df["category"] == category_choice_filter) & (df["brand"] == brand_choice_filter) & (df["product"] == product_choice_filter) & (df["sku"] == sku_choice_filter)]
+    df = df.loc[(df["status"] == status_choice_filter) & (df["category"] == category_choice_filter) & (df["brand"] == brand_choice_filter) & (df["product"] == product_choice_filter) & (df["sku"] == sku_choice_filter) & (df["variant"] == variant_choice_filter)]
     
     gb = GridOptionsBuilder.from_dataframe(df)
     
