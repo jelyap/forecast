@@ -162,22 +162,7 @@ if __name__ == '__main__':
     
     st.info("Select specific SKU to view historical data.")
     
-    if sku_choice != "All":
-        
-        engine = conn()
-
-        query_prod = """
-                        select to_char("transaction-time", 'YYYY-MM') as "transaction-time", sum(quantity) as Historical
-                        from public.custom_mview_genv cmg 
-                        where "product-active" = 1
-                        and "product-sku" = '""" + (str(sku_choice)) + "'" + """ group by 1 order by "transaction-time" """ 
-                     
-
-        df2 = pd.read_sql(query_prod, engine)
-        
-        st.line_chart(df2.rename(columns={'transaction-time':'index'}).set_index('index'),use_container_width=True)
-    
-    elif variant_choice != "All":
+    if variant_choice != "All":
         
         engine = conn()
 
@@ -192,4 +177,18 @@ if __name__ == '__main__':
         
         st.line_chart(df2.rename(columns={'transaction-time':'index'}).set_index('index'),use_container_width=True)
         
+    elif sku_choice != "All":
+        
+        engine = conn()
+
+        query_prod = """
+                        select to_char("transaction-time", 'YYYY-MM') as "transaction-time", sum(quantity) as Historical
+                        from public.custom_mview_genv cmg 
+                        where "product-active" = 1
+                        and "product-sku" = '""" + (str(sku_choice)) + "'" + """ group by 1 order by "transaction-time" """ 
+                     
+
+        df2 = pd.read_sql(query_prod, engine)
+        
+        st.line_chart(df2.rename(columns={'transaction-time':'index'}).set_index('index'),use_container_width=True)
         
