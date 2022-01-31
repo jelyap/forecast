@@ -27,26 +27,12 @@ def dev_conn():
     engine = create_engine('postgresql://' + user + ':' + password + '@' + host + ':' + str(port) + '/' + dbname)
     return engine
 
-def get_data(engine):
-    query = 'select "transaction-time" ,"product-sku", "product-name" , "product-brand" ,"product-category" , ' \
-            'quantity , "inventory-created-at" , "inventory-level" from public.custom_mview_genv cmg where "product-active" = 1'
-    df = pd.read_sql(query, engine)
-    # df = pd.read_csv(filename)
-    # Ensuring date formats
-    df['transaction-time'] = pd.to_datetime(df['transaction-time'], format='%Y%m%d %H:%M:%S')
-    df['inventory-created-at'] = pd.to_datetime(df['inventory-created-at'], format='%Y%m%d %H:%M:%S')
-    return df
-
-def create_table(df, table_name, engine):
-    df.to_sql(name=table_name, con=engine, schema='public', if_exists='replace', index=False, method='multi')
-
-
 if __name__ == '__main__':
 
     engine_dev = dev_conn()
 
     query = """
-                select "product-name" as "Product", "product-sku" as SKU , "product-category" as Category, "product-brand" as Brand , 
+                select "product-name" as "Product", "product-sku" as SKU , "product-variant-name" as "Variant" , "product-category" as Category, "product-brand" as Brand , 
                 "re-order" as "ReOrder", projection as Forecast , "latest-inv-level" as Inventory, forecast_trend as Trend ,status as Status
                 from public.gen_v_monthly_forecast
                 order by case
@@ -186,6 +172,8 @@ if __name__ == '__main__':
          file_name='InventoryForecast.csv',
          mime='InventoryForecast/csv',
      )
+    
+    st.info("Select specific SKU to view historical data.")
     
     if sku_choice != "All":
         
