@@ -185,4 +185,16 @@ if __name__ == '__main__':
          file_name='InventoryForecast.csv',
          mime='InventoryForecast/csv',
      )
+    
+    engine = conn()
 
+    query_prod = """
+                    select "product-name", "product-sku", "product-category", "product-brand", 
+                    to_char("transaction-time", 'YYYY-MM-DD') as "transaction-time", quantity 
+                    from public.custom_mview_genv cmg 
+                    where "product-active" = 1
+                 """
+    
+    df2 = pd.read_sql(query_prod, engine)
+    
+    AgGrid(df2)
