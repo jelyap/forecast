@@ -160,7 +160,7 @@ if __name__ == '__main__':
         ".check-yellow": {"color": "orange !important"},
     }
     
-    AgGrid(df, gridOptions=gridOptions)
+    AgGrid(df, gridOptions=gridOptions, allow_unsafe_jscode=True)
     
     @st.cache
     
