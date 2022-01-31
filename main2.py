@@ -191,13 +191,13 @@ if __name__ == '__main__':
         engine = conn()
 
         query_prod = """
-                        select to_char("transaction-time", 'YYYY-MM-DD') as "transaction-time", quantity 
+                        select to_char("transaction-time", 'YYYY-MM-DD') as "transaction-time", sum(quantity) 
                         from public.custom_mview_genv cmg 
                         where "product-active" = 1
                         and "product-sku" = '
-                     """ + str(sku_choice) + "'"
+                     """ + str(sku_choice) + "'" + """group by "transaction-time" """ 
+                     
 
         df2 = pd.read_sql(query_prod, engine)
     
-        df2 = df2.groupby(by=['transaction-time'])['quantity'].sum()
         AgGrid(df2)
