@@ -33,8 +33,17 @@ if __name__ == '__main__':
     engine_dev = dev_conn()
 
     query = """
-                select "product-variant-name" as "Variant", "product-sku" as SKU , "product-category" as Category, "product-brand" as Brand , "product-name" as "Product" ,
-                "re-order" as "ReOrder", projection as Forecast , "latest-inv-level" as Inventory, forecast_trend as Trend ,status as Status
+                select 
+                "product-name" as "Product" ,
+                "product-variant-name" as "Variant" , 
+                "product-sku" as SKU , 
+                "product-category" as Category, 
+                "product-brand" as Brand ,
+                "latest-inv-level" as Inventory ,
+                projection as Forecast ,  
+                "re-order" as "ReOrder" ,
+                status as Status ,
+                forecast_trend as Trend 
                 from public.gen_v_monthly_forecast
                 order by case
                     when status = 'Place Order' then 1
@@ -130,38 +139,6 @@ if __name__ == '__main__':
     };
     """)
     gb.configure_column("status", cellStyle=cellsytle_jscode)
-    
-    cellsytle_jscode_2 = JsCode("""
-    function(params) {
-        if (params.value == 'Alert 2') {
-            return {
-                'color': 'black',
-                'backgroundColor': 'red'
-            }
-        } else if (params.value == 'Alert 1') {
-            return {
-                'color': 'black',
-                'backgroundColor': 'pink'
-            }
-        } else if (params.value == 'Lower') {
-            return {
-                'color': 'black',
-                'backgroundColor': 'orange'
-            }
-        } else if (params.value == 'Upper') {
-            return {
-                'color': 'black',
-                'backgroundColor': 'yellow'
-            }
-        } else {
-            return {
-                'color': 'black',
-                'backgroundColor': 'lightgreen'
-            }
-        }
-    };
-    """)
-    gb.configure_column("trend", cellStyle=cellsytle_jscode_2)
     
     gb.configure_grid_options(domLayout='normal')
     gridOptions = gb.build()
