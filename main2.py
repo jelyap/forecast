@@ -122,6 +122,8 @@ if __name__ == '__main__':
         
     df = df.loc[(df["status"] == status_choice_filter) & (df["category"] == category_choice_filter) & (df["brand"] == brand_choice_filter) & (df["product"] == product_choice_filter) & (df["sku"] == sku_choice_filter)]
     
+    gb = GridOptionsBuilder.from_dataframe(df)
+    
     row_class_rules = {
         "order-red": "data.status == 'Place Order'",
         "check-yellow": "data.status == 'Check Status'",
