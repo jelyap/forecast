@@ -2,7 +2,6 @@ import streamlit as st
 import os
 import pandas as pd
 import numpy as np
-import plotly.express as px
 from sqlalchemy import create_engine
 from datetime import datetime
 from st_aggrid import  GridOptionsBuilder, AgGrid, GridUpdateMode, DataReturnMode, JsCode
