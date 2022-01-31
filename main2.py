@@ -147,6 +147,38 @@ if __name__ == '__main__':
     """)
     gb.configure_column("status", cellStyle=cellsytle_jscode)
     
+    cellsytle_jscode_2 = JsCode("""
+    function(params) {
+        if (params.value == 'Alert 2') {
+            return {
+                'color': 'black',
+                'backgroundColor': 'lightred'
+            }
+        } else if (params.value == 'Alert 1') {
+            return {
+                'color': 'black',
+                'backgroundColor': 'pink'
+            }
+        } else if (params.value == 'Lower') {
+            return {
+                'color': 'black',
+                'backgroundColor': 'orange'
+            }
+        } else if (params.value == 'Upper') {
+            return {
+                'color': 'black',
+                'backgroundColor': 'yellow'
+            }
+        } else {
+            return {
+                'color': 'black',
+                'backgroundColor': 'lightgreen'
+            }
+        }
+    };
+    """)
+    gb.configure_column("trend", cellStyle=cellsytle_jscode_2)
+    
     gb.configure_grid_options(domLayout='normal')
     gridOptions = gb.build()
     
