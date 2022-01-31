@@ -140,7 +140,7 @@ if __name__ == '__main__':
         } else {
             return {
                 'color': 'white',
-                'backgroundColor': 'lightgreen'
+                'backgroundColor': 'green'
             }
         }
     };
