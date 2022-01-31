@@ -194,7 +194,7 @@ if __name__ == '__main__':
                         select to_char("transaction-time", 'YYYY-MM-DD') as "transaction-time", sum(quantity) 
                         from public.custom_mview_genv cmg 
                         where "product-active" = 1
-                        and "product-sku" = '""" + strip(str(sku_choice)) + "'" + """ group by "transaction-time" """ 
+                        and "product-sku" = '""" + (str(sku_choice)) + "'" + """ group by "transaction-time" """ 
                      
 
         df2 = pd.read_sql(query_prod, engine)
