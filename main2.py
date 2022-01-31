@@ -199,4 +199,4 @@ if __name__ == '__main__':
 
         df2 = pd.read_sql(query_prod, engine)
     
-        st.line_chart(df2)
+        AgGrid(df2)
