@@ -122,7 +122,22 @@ if __name__ == '__main__':
         
     df = df.loc[(df["status"] == status_choice_filter) & (df["category"] == category_choice_filter) & (df["brand"] == brand_choice_filter) & (df["product"] == product_choice_filter) & (df["sku"] == sku_choice_filter)]
     
-    AgGrid(df)
+    row_class_rules = {
+        "order-red": "data.status == 'Place Order'",
+        "check-yellow": "data.status == 'Check Status'",
+        "good-green": "data.side == 'Good'",
+    }
+    
+    gb.configure_grid_options(rowClassRules=row_class_rules)
+    grid_options = gb.build()
+    
+    custom_css = {
+        ".good-green": {"color": "green !important"},
+        ".order-red": {"color": "red !important"},
+        ".check-yellow": {"color": "yellow !important"},
+    }
+    
+    AgGrid(df,theme="streamlit", custom_css=custom_css, gridOptions=grid_options)
     
     @st.cache
     
