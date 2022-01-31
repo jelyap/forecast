@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine
 from datetime import datetime
-from st_aggrid import AgGrid, GridOptionsBuilder
+from st_aggrid import AgGrid, GridOptionsBuilder, JsCode
 
 st.title("Inventory Forecast")
 
@@ -124,14 +124,35 @@ if __name__ == '__main__':
     
     gb = GridOptionsBuilder.from_dataframe(df)
     
-    row_class_rules = {
-        "order-red": "data.status == 'Place Order'",
-        "check-yellow": "data.status == 'Check Product'",
-        "good-green": "data.status == 'Good'",
-    }
+    #configures last row to use custom styles based on cell's value, injecting JsCode on components front end
+    cellsytle_jscode = JsCode("""
+    function(params) {
+        if (params.value == 'Place Order') {
+            return {
+                'color': 'white',
+                'backgroundColor': 'darkred'
+            }
+        } else {
+            return {
+                'color': 'black',
+                'backgroundColor': 'white'
+            }
+        }
+    };
+    """)
+    gb.configure_column("group", cellStyle=cellsytle_jscode)
     
-    gb.configure_grid_options(rowClassRules=row_class_rules)
-    grid_options = gb.build()
+    gb.configure_grid_options(domLayout='normal')
+    gridOptions = gb.build()
+    
+    #row_class_rules = {
+    #    "order-red": "data.status == 'Place Order'",
+    #    "check-yellow": "data.status == 'Check Product'",
+    #    "good-green": "data.status == 'Good'",
+    #}
+    
+    #gb.configure_grid_options(rowClassRules=row_class_rules)
+    #grid_options = gb.build()
     
     custom_css = {
         ".good-green": {"color": "green !important"},
