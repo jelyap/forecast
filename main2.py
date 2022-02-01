@@ -169,7 +169,8 @@ if __name__ == '__main__':
                         select to_char("transaction-time", 'YYYY-MM') as "transaction-time", sum(quantity) as Historical
                         from public.custom_mview_genv cmg 
                         where "product-active" = 1
-                        and "product-variant-name" = '""" + (str(variant_choice)) + "'" + """ group by 1 order by "transaction-time" """ 
+                        and "product-variant-name" = '""" + (str(variant_choice)) + "'" + """ group by 1 order by "transaction-time" 
+                     """ 
                      
 
         df2 = pd.read_sql(query_prod, engine)
